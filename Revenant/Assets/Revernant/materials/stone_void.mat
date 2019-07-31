@@ -5,9 +5,10 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: stone_void
-  m_Shader: {fileID: 4800000, guid: d8dc5b44f974a407888d976711c36e82, type: 3}
+  m_Shader: {fileID: 4800000, guid: 57dbdb07234174e1ba0e1899710b9107, type: 3}
   m_ShaderKeywords: _EMISSION _HEIGHTFOGCOLOR
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -54,6 +55,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -65,11 +70,26 @@ Material:
     - _Metallic: 0.15
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Outline: 0.1
     - _Parallax: 0.02
+    - _RotationX: 0
+    - _RotationY: 0
+    - _RotationZ: 0
+    - _ScaleX: 0
+    - _ScaleY: 0
+    - _SpecularScale: 0.01
+    - _SplitX: 0
+    - _SplitY: 0
+    - _SquareN: 1
+    - _SquareScale: 0
     - _SrcBlend: 1
+    - _TranslationX: 0
+    - _TranslationY: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.663, g: 0.3978, b: 0, a: 1}
     - _EmissionColor: {r: 0.13291597, g: 0.29370478, b: 0.329, a: 1}
     - _HeightFogColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Specular: {r: 1, g: 1, b: 1, a: 1}
