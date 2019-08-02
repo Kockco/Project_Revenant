@@ -16,6 +16,7 @@ public class FollowCam : MonoBehaviour
     //카메라 초기 위치
     private float x = 0.0f;
     private float y = 0.0f;
+
     //y값 제한 (위 아래 제한)
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
@@ -29,6 +30,7 @@ public class FollowCam : MonoBehaviour
             angle -= 360;
         return Mathf.Clamp(angle, min, max);
     }
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //커서 고정
@@ -50,7 +52,7 @@ public class FollowCam : MonoBehaviour
         Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
         transform.rotation = rotation;
-        target.rotation = Quaternion.Euler(0, x, 0);
+        //target.rotation = Quaternion.Euler(0, x, 0);
         transform.position = position;
     }
 }
