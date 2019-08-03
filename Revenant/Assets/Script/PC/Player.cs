@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         Debug.Log(movement);
         rigidbody.MovePosition(transform.position + movement);
     }
+
     public bool MoveKeyState()
     {
         h = Input.GetAxisRaw("Horizontal");
