@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.7855362, g: 0.8043237, b: 1.3991764, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -456,7 +456,7 @@ Transform:
   m_LocalScale: {x: 100.000305, y: 100.00008, z: 100.00035}
   m_Children: []
   m_Father: {fileID: 1963333778}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: -151.278, y: 39.513, z: -139.821}
 --- !u!1001 &246663547
 PrefabInstance:
@@ -2113,7 +2113,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.90054834, b: 0.7205882, a: 1}
-  m_Intensity: 0.95
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2727,7 +2727,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1963333778}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 3.6090002, y: 133.66501, z: -4.8760004}
 --- !u!1001 &1113941856
 PrefabInstance:
@@ -3099,7 +3099,7 @@ Transform:
   m_LocalScale: {x: 117.23614, y: 117.236404, z: 117.23634}
   m_Children: []
   m_Father: {fileID: 1963333778}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: -123.42799, y: 39.328995, z: -8.450989}
 --- !u!4 &1430478413 stripped
 Transform:
@@ -3257,7 +3257,7 @@ Transform:
   m_LocalScale: {x: 84.3593, y: 84.35906, z: 84.35924}
   m_Children: []
   m_Father: {fileID: 1963333778}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: -137.70999, y: 14.92099, z: 148.689}
 --- !u!1001 &1539459114
 PrefabInstance:
@@ -4189,8 +4189,8 @@ Transform:
   - {fileID: 2055762415}
   - {fileID: 1955817700}
   - {fileID: 1040584829}
-  - {fileID: 1113529038}
   - {fileID: 1969508439}
+  - {fileID: 1113529038}
   - {fileID: 749685153}
   - {fileID: 448875681}
   - {fileID: 547232759}
@@ -4198,10 +4198,10 @@ Transform:
   - {fileID: 1868807224}
   - {fileID: 434137835}
   - {fileID: 1467376231}
+  - {fileID: 1614242596}
   - {fileID: 1498418162}
   - {fileID: 1418272495}
   - {fileID: 211251774}
-  - {fileID: 1614242596}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
