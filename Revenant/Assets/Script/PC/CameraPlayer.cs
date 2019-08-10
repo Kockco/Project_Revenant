@@ -11,6 +11,10 @@ public class CameraPlayer : MonoBehaviour
     [SerializeField]
     float mouseSensitivity = 2.0f;  //카메라 마우스 감도
 
+    float yVelocity = 0;
+    public float jumpPower = 100f;
+    Vector3 dir;
+
     Transform myTransform;
     Transform model;
 
@@ -39,7 +43,7 @@ public class CameraPlayer : MonoBehaviour
 
         if (cc.isGrounded)
         {
-            GradientCheck();
+            //GradientCheck();
             MoveCalc(1.0f);
         }
         else
@@ -51,6 +55,15 @@ public class CameraPlayer : MonoBehaviour
 
         cc.Move(move * Time.deltaTime);
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            yVelocity = jumpPower;
+        }
+        move.y = yVelocity;
+        if(yVelocity > -5)
+        yVelocity -= gravity * 3 * Time.deltaTime;
+
+        
     }
 
     void LateUpdate()
@@ -134,5 +147,5 @@ public class CameraPlayer : MonoBehaviour
         else
             move.y = -1;
     }
-    
+
 }
