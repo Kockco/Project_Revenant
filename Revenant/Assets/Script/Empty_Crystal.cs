@@ -16,7 +16,6 @@ public class Empty_Crystal : MonoBehaviour
     private void Update()
     {
         TargetPosChange();
-        
         if (transform.position == pos[4].transform.position)
         {
             state = STATE.CENTER;
@@ -97,7 +96,6 @@ public class Empty_Crystal : MonoBehaviour
                     target = pos[4]; //empty
                 }
                 break;
-
         }
     }
 }

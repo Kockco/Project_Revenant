@@ -25,7 +25,7 @@ public class MouseClick : MonoBehaviour
             }
             else if (target.tag == "Crystal")
             {
-                mat = target.GetComponent<CrystalState>().mat;
+                mat = target.GetComponent<CrystalState>().myMat.material;
             }
 
             Debug.Log(target.name);

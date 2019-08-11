@@ -49,7 +49,6 @@ public class CameraPlayer : MonoBehaviour
         else
         {
             move.y -= gravity * Time.deltaTime;
-
             MoveCalc(0.01f);
         }
 
@@ -60,10 +59,8 @@ public class CameraPlayer : MonoBehaviour
             yVelocity = jumpPower;
         }
         move.y = yVelocity;
-        if(yVelocity > -5)
-        yVelocity -= gravity * 3 * Time.deltaTime;
-
-        
+        if (yVelocity > -19)
+            yVelocity -= gravity * 3 * Time.deltaTime;
     }
 
     void LateUpdate()
