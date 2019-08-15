@@ -266,7 +266,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fdceed5da3534ba931647dcf1e040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  state: 0
+  mat:
+  - {fileID: 0}
+  myMat: {fileID: 0}
+  changeMat: 0
 --- !u!65 &467971561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -636,7 +640,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fdceed5da3534ba931647dcf1e040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  state: 3
+  mat:
+  - {fileID: 0}
+  myMat: {fileID: 0}
+  changeMat: 0
 --- !u!65 &934887741
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -741,7 +749,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fdceed5da3534ba931647dcf1e040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  state: 2
+  mat:
+  - {fileID: 0}
+  myMat: {fileID: 0}
+  changeMat: 0
 --- !u!65 &1031654192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -939,6 +951,7 @@ GameObject:
   - component: {fileID: 1482253487}
   - component: {fileID: 1482253486}
   - component: {fileID: 1482253485}
+  - component: {fileID: 1482253490}
   m_Layer: 0
   m_Name: Empty_Crystal
   m_TagString: Crystal
@@ -955,17 +968,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1482253484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd3987a6a4413e40bcffa93a05433ab, type: 3}
+  m_Script: {fileID: 11500000, guid: aa6fdceed5da3534ba931647dcf1e040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos:
-  - {fileID: 68203534}
-  - {fileID: 837820248}
-  - {fileID: 1271040795}
-  - {fileID: 493193444}
-  - {fileID: 500916858}
-  target: {fileID: 500916858}
-  state: 0
+  state: 4
+  mat: []
+  myMat: {fileID: 0}
+  changeMat: 0
 --- !u!65 &1482253486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1038,6 +1047,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1482253490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482253484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0d30a3f20332044b9d3cbac0acc9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos:
+  - {fileID: 68203534}
+  - {fileID: 837820248}
+  - {fileID: 1271040795}
+  - {fileID: 493193444}
+  - {fileID: 500916858}
+  target: {fileID: 500916858}
+  c_state: {fileID: 0}
 --- !u!1 &1938330451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1099,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6fdceed5da3534ba931647dcf1e040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  state: 1
+  mat:
+  - {fileID: 0}
+  myMat: {fileID: 0}
+  changeMat: 0
 --- !u!65 &1938330453
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ public class CrystalState : MonoBehaviour
     public C_STATE state;
     public Material[] mat;
     public MeshRenderer myMat;
+
+    public bool changeMat;
+    float timeCheck;
     void Start()
     {
         //마테리얼 미리 리소스 로드
@@ -19,12 +22,24 @@ public class CrystalState : MonoBehaviour
         mat[3] = Resources.Load("Test/Crystal4", typeof(Material)) as Material;
         mat[4] = Resources.Load("Test/Empty", typeof(Material)) as Material;
         myMat = GetComponent<MeshRenderer>();
+        changeMat = false;
+        timeCheck = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         ChangeMat();
+        //마테리얼이 바뀌었으면 바뀌었다는 신호를 시간만큼 줍니다.
+        if(changeMat == true)
+        {
+            timeCheck += Time.deltaTime;
+            if(timeCheck >=0.5f)
+            {
+                timeCheck = 0;
+                changeMat = false;
+            }
+        }
     }
 
     void ChangeMat()
