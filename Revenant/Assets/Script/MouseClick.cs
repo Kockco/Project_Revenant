@@ -7,7 +7,7 @@ public class MouseClick : MonoBehaviour
     private GameObject target;
     public Material mat;
     public Material normalMat;
-    C_STATE state;
+     C_STATE state;
 
     private void Start()
     {

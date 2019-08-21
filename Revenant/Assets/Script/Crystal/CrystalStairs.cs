@@ -23,8 +23,8 @@ public class CrystalStairs : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            if (stairs[i].activeSelf == true)
-                stairs[i].SetActive(false);
+            if (i != (int)c_state.state)
+                stairs[i].transform.position = new Vector3(stairs[i].transform.position.x, -2.64f, stairs[i].transform.position.z);
         }
         switch (c_state.state)
         {
@@ -32,16 +32,23 @@ public class CrystalStairs : MonoBehaviour
                 break;
             case C_STATE.BLUE:
                 stairs[0].SetActive(true);
+                if (stairs[0].transform.position.y <=1f)
+                stairs[0].transform.Translate(0,5 * Time.deltaTime, 0);
                 break;
             case C_STATE.WHITE:
                 stairs[1].SetActive(true);
+                if (stairs[1].transform.position.y <= 1f)
+                    stairs[1].transform.Translate(0, 5 * Time.deltaTime, 0);
                 break;
             case C_STATE.RED:
-
                 stairs[2].SetActive(true);
+                if (stairs[2].transform.position.y <= 1f)
+                    stairs[2].transform.Translate(0, 5 * Time.deltaTime, 0);
                 break;
             case C_STATE.BLACK:
                 stairs[3].SetActive(true);
+                if (stairs[3].transform.position.y <= 1f)
+                    stairs[3].transform.Translate(0, 5 * Time.deltaTime, 0);
                 break;
         }
     }

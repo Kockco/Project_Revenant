@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class CrystalMove : MonoBehaviour
 {
-    public GameObject[] pos;
-    public GameObject target;
+    public Vector3[] pos;
+    public Vector3 target;
     public CrystalState c_state;
     private void Start()
     {
         c_state = GetComponent<CrystalState>();
         c_state.state = C_STATE.EMPTY;
+        
+        pos = new Vector3[5];
+        for(int i = 0; i <5; i++)
+        {
+            pos[i] = transform.position;
+        }
+        pos[0].x += 5;
+        pos[1].x -= 5;
+        pos[2].z -= 5;
+        pos[3].z += 5;
     }
     private void Update()
     {
@@ -19,7 +29,7 @@ public class CrystalMove : MonoBehaviour
         //    c_state.state = C_STATE.EMPTY;
         //}
         //중앙이면 타겟으로 위치 변경!
-        if (transform.position == pos[4].transform.position && c_state.state != C_STATE.EMPTY)
+        if (transform.position == pos[4] && c_state.state != C_STATE.EMPTY)
         {
             TargetPosChange();
         }
@@ -30,10 +40,10 @@ public class CrystalMove : MonoBehaviour
         }
 
         //중앙이 아닐때는 중앙으로 /중앙 포지션과는 비슷해지면 초기화
-        if (((target.transform.position.z - transform.position.z) < 0.1f && (target.transform.position.z - transform.position.z) > -0.1f)
-            && ((target.transform.position.x - transform.position.x) < 0.1f && (target.transform.position.x - transform.position.x) > -0.1f))
+        if (((target.z - transform.position.z) < 0.1f && (target.z - transform.position.z) > -0.1f)
+            && ((target.x - transform.position.x) < 0.1f && (target.x - transform.position.x) > -0.1f))
         {
-            transform.position = target.transform.position;
+            transform.position = target;
         }
     }
 
@@ -41,7 +51,7 @@ public class CrystalMove : MonoBehaviour
     void FixedUpdate()
     {
         //움직임
-        transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.fixedDeltaTime * 2f);
+        transform.position = Vector3.Lerp(transform.position, target, Time.fixedDeltaTime * 2f);
         
     }
 
