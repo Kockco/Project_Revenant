@@ -11,6 +11,10 @@ public class CameraPlayer : MonoBehaviour
     [SerializeField]
     float mouseSensitivity = 2.0f;  //카메라 마우스 감도
 
+    float yVelocity = 0;
+    public float jumpPower = 100f;
+    Vector3 dir;
+
     Transform myTransform;
     Transform model;
 
@@ -21,14 +25,24 @@ public class CameraPlayer : MonoBehaviour
     Transform cameraParentTransform;
     Transform cameraTransform;
 
+    bool topView;
+
+    Transform staff;
+    Transform aim;
     // Use this for initialization
     void Awake()
     {
+        topView = false;
         myTransform = transform;
         cc = GetComponent<CharacterController>();
         model = transform.GetChild(0);
         cameraTransform = Camera.main.transform;
         cameraParentTransform = cameraTransform.parent;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        staff = model.transform.GetChild(0);
+        aim = model.transform.GetChild(1);
     }
 
     // Update is called once per frame
@@ -39,36 +53,87 @@ public class CameraPlayer : MonoBehaviour
 
         if (cc.isGrounded)
         {
-            GradientCheck();
+            //GradientCheck();
             MoveCalc(1.0f);
         }
         else
         {
             move.y -= gravity * Time.deltaTime;
-
             MoveCalc(0.01f);
         }
 
         cc.Move(move * Time.deltaTime);
 
+        Jump();
+
+        if (Input.GetKeyDown(KeyCode.T)) // 탑뷰로 바꾸기
+        {
+            if (!topView)
+                topView = true;
+            else
+                topView = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            model.GetComponent<Animator>().SetTrigger("UseStaff");
+            if (aim.GetComponent<PlayerAimState>().isCol == true)
+            {
+                if (aim.GetComponent<PlayerAimState>().col.name == "Empty_Crystal") // 에임과 충돌한것->내스테프와 같은것
+                {
+                    //크리스탈이 달라야만 바꿔준다.
+                    if (aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().state !=
+                        staff.GetComponent<PlayerStaff>().state)
+                    {
+                        aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().state = staff.GetComponent<PlayerStaff>().state;
+                        aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().changeMat = true;
+                    }
+                }
+                else if (aim.GetComponent<PlayerAimState>().col.tag == "Crystal")
+                {
+                    staff.GetComponent<PlayerStaff>().mat = aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().myMat.material;
+                    staff.GetComponent<PlayerStaff>().state = aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().state;
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            model.GetComponent<Animator>().SetTrigger("UseStaff");
+            staff.GetComponent<PlayerStaff>().mat = staff.GetComponent<PlayerStaff>().normalMat;
+            staff.GetComponent<PlayerStaff>().state = C_STATE.EMPTY;
+        }
     }
 
     void LateUpdate()
     {
+        if(!topView)
+            MouseSense();
+        else
+            TopView();
+    }
+
+    void MouseSense()
+    {
         cameraParentTransform.position = myTransform.position + Vector3.up * 1.4f;  //캐릭터의 머리 높이쯤
+
         mouseMove += new Vector3(-Input.GetAxisRaw("Mouse Y") * mouseSensitivity, Input.GetAxisRaw("Mouse X") * mouseSensitivity, 0);   //마우스의 움직임을 가감
-        if (mouseMove.x < -40)  //높이는 제한을 둔다. 슈팅 게임이라면 거의 90에 가깝게 두는게 좋을수도 있다.
+        if (mouseMove.x < -40)  //위로 볼수있는 것 제한 90이면 아예 땅바닥에서 하늘보기
             mouseMove.x = -40;
-        else if (30 < mouseMove.x)
+        else if (30 < mouseMove.x) //위에서 아래로 보는것 제한 
             mouseMove.x = 30;
-        //여기서 헷갈리면 안 되는게 GetAxisRaw("Mouse XY") 는 실제 마우스의 움직임의 x좌표 y좌표를 가져오지만 회전은 축 기준이라 x가 위아래고 y가 좌우이다.
 
         cameraParentTransform.localEulerAngles = mouseMove;
     }
 
+    void TopView()
+    {
+        cameraParentTransform.position = myTransform.position + Vector3.up * 25; //캐릭터 머리 훨씬위
+        cameraParentTransform.localEulerAngles = new Vector3(90, 0 ,0);
+    }
+
     void Balance()
     {
-        if (myTransform.eulerAngles.x != 0 || myTransform.eulerAngles.z != 0)   //모종의 이유로 기울어진다면 바로잡는다.
+        if (myTransform.eulerAngles.x != 0 || myTransform.eulerAngles.z != 0)   //대각선으로 틀어질 경우는 없어야하니 바로잡기
             myTransform.eulerAngles = new Vector3(0, myTransform.eulerAngles.y, 0);
     }
 
@@ -134,5 +199,19 @@ public class CameraPlayer : MonoBehaviour
         else
             move.y = -1;
     }
-    
+
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            yVelocity = jumpPower;
+        }
+        move.y = yVelocity;
+        if (yVelocity > -19)
+            yVelocity -= gravity * 3 * Time.deltaTime;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+    }
 }
