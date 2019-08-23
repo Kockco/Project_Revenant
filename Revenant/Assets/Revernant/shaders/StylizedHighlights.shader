@@ -1,15 +1,9 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-///
-///  Reference: 	Anjyo K, Hiramitsu K. Stylized highlights for cartoon rendering and animation[J]. 
-///						Computer Graphics and Applications, IEEE, 2003, 23(4): 54-61.
-/// 
-Shader "NPR/Cartoon/Stylized Highlights" {
+﻿Shader "NPR/Cartoon/Stylized Highlights" {
 	Properties {
-		_Color ("Diffuse Color", Color) = (1, 1, 1, 1)
+		[ColorUsage(true,true)]_Color ("Diffuse Color", Color) = (1, 1, 1, 1)
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_Ramp ("Ramp Texture", 2D) = "white" {}
+		_BumpMap("Bumpmap", 2D) = "bump" {}
 		_Outline ("Outline", Range(0,1)) = 0.1
 		_OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
@@ -54,7 +48,7 @@ Shader "NPR/Cartoon/Stylized Highlights" {
 			fixed4 _Color;
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
-			sampler2D _Ramp;
+			sampler2D _Ramp, _BumpMap;
 			fixed4 _Specular;
 			fixed _SpecularScale;
 			float _TranslationX;
@@ -68,6 +62,7 @@ Shader "NPR/Cartoon/Stylized Highlights" {
 			float _SplitY;
 			float _SquareN;
 			fixed _SquareScale;
+			float2 uv_BumpMap;
 			
 			struct a2v {
 				float4 vertex : POSITION;
@@ -104,6 +99,8 @@ Shader "NPR/Cartoon/Stylized Highlights" {
 			}
 			
 			float4 frag(v2f i) : COLOR { 
+
+				half3 tnormal = UnpackNormal(tex2D(_BumpMap, i.uv));
 				fixed3 tangentNormal = normalize(i.tangentNormal);
 				fixed3 tangentLightDir = normalize(i.tangentLightDir);
 				fixed3 tangentViewDir = normalize(i.tangentViewDir);
@@ -198,7 +195,7 @@ Shader "NPR/Cartoon/Stylized Highlights" {
 			#define DegreeToRadian 0.0174533
 			
 			fixed4 _Color;
-			sampler2D _MainTex;
+			sampler2D _MainTex, _BumpMap;
 			float4 _MainTex_ST;
 			sampler2D _Ramp;
 			fixed4 _Specular;
@@ -250,6 +247,7 @@ Shader "NPR/Cartoon/Stylized Highlights" {
 			}
 			
 			float4 frag(v2f i) : COLOR { 
+
 				fixed3 tangentNormal = normalize(i.tangentNormal);
 				fixed3 tangentLightDir = normalize(i.tangentLightDir);
 				fixed3 tangentViewDir = normalize(i.tangentViewDir);
@@ -312,6 +310,7 @@ Shader "NPR/Cartoon/Stylized Highlights" {
 				fixed spec = dot(tangentNormal, tangentHalfDir);
 				fixed w = fwidth(spec) * 1.0;
 				fixed3 specular = lerp(fixed3(0, 0, 0), _Specular.rgb, smoothstep(-w, w, spec + _SpecularScale - 1));
+				half3 tnormal = UnpackNormal(tex2D(_BumpMap, i.uv));
 				
 				return fixed4((diffuse + specular) * atten, 1.0);
 			}

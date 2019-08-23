@@ -83,7 +83,7 @@ Material:
     - _BottomColor: {r: 0.5424528, g: 0.7915619, b: 1, a: 1}
     - _BottomColor2: {r: 0, g: 0, b: 0, a: 1}
     - _CloudColorDayEdge: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
-    - _CloudColorDayMain: {r: 0.25307047, g: 0.26186162, b: 0.4433962, a: 1}
+    - _CloudColorDayMain: {r: 0.28128338, g: 0.28882426, b: 0.46226418, a: 1}
     - _CloudColorDayUnder: {r: 0.56551856, g: 0.51891243, b: 0.6509434, a: 1}
     - _CloudColorNightEdge: {r: 0.0047169924, g: 0.46247175, b: 1, a: 1}
     - _CloudColorNightMain: {r: 0.016820932, g: 0.050730318, b: 0.16981131, a: 1}
