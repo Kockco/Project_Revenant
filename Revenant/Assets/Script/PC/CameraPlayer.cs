@@ -27,8 +27,9 @@ public class CameraPlayer : MonoBehaviour
 
     bool topView;
 
-    Transform staff;
-    Transform aim;
+    public Transform staff;
+    public Transform aim;
+
     // Use this for initialization
     void Awake()
     {
@@ -41,15 +42,18 @@ public class CameraPlayer : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        staff = model.transform.GetChild(0);
-        aim = model.transform.GetChild(1);
+        //staff = model.transform.GetChild(0);
+        //에임 지정
+        //aim = model.transform.GetChild(1);
     }
 
     // Update is called once per frame
     void Update()
     {
         Balance();
-        CameraDistanceCtrl();
+        //CameraDistanceCtrl();
+
+        Jump();
 
         if (cc.isGrounded)
         {
@@ -63,8 +67,7 @@ public class CameraPlayer : MonoBehaviour
         }
 
         cc.Move(move * Time.deltaTime);
-
-        Jump();
+        
 
         if (Input.GetKeyDown(KeyCode.T)) // 탑뷰로 바꾸기
         {
@@ -94,7 +97,7 @@ public class CameraPlayer : MonoBehaviour
                     staff.GetComponent<PlayerStaff>().mat = aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().myMat.material;
                     staff.GetComponent<PlayerStaff>().state = aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().state;
                 }
-            }
+           }
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -106,10 +109,12 @@ public class CameraPlayer : MonoBehaviour
 
     void LateUpdate()
     {
-        if(!topView)
+        /*if(!topView)
             MouseSense();
         else
-            TopView();
+            TopView();*/
+        MouseSense();
+        MyView();
     }
 
     void MouseSense()
@@ -129,6 +134,13 @@ public class CameraPlayer : MonoBehaviour
     {
         cameraParentTransform.position = myTransform.position + Vector3.up * 25; //캐릭터 머리 훨씬위
         cameraParentTransform.localEulerAngles = new Vector3(90, 0 ,0);
+    }
+
+    void MyView()
+    {
+        Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, 0);
+        cameraParentTransform.position = myTransform.position + Vector3.up; //캐릭터 머리 훨씬위
+        //cameraParentTransform.localEulerAngles = new Vector3(0, 0, 0);
     }
 
     void Balance()
@@ -210,8 +222,5 @@ public class CameraPlayer : MonoBehaviour
         if (yVelocity > -19)
             yVelocity -= gravity * 3 * Time.deltaTime;
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-    }
+    
 }
