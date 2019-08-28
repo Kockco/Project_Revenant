@@ -54,7 +54,7 @@ Material:
     m_Floats:
     - _BaseNoiseScale: 0.154
     - _BaseScale: 0.139
-    - _Brightness: 1.97
+    - _Brightness: 3
     - _CloudCutoff: 0.067
     - _DistortScale: 0.028
     - _DistortScale2: 0.036
@@ -83,8 +83,8 @@ Material:
     - _BottomColor: {r: 0.5424528, g: 0.7915619, b: 1, a: 1}
     - _BottomColor2: {r: 0, g: 0, b: 0, a: 1}
     - _CloudColorDayEdge: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
-    - _CloudColorDayMain: {r: 0.28128338, g: 0.28882426, b: 0.46226418, a: 1}
-    - _CloudColorDayUnder: {r: 0.56551856, g: 0.51891243, b: 0.6509434, a: 1}
+    - _CloudColorDayMain: {r: 0.4680936, g: 0.5839397, b: 0.6320754, a: 1}
+    - _CloudColorDayUnder: {r: 0.5176471, g: 0.60625273, b: 0.6509804, a: 1}
     - _CloudColorNightEdge: {r: 0.0047169924, g: 0.46247175, b: 1, a: 1}
     - _CloudColorNightMain: {r: 0.016820932, g: 0.050730318, b: 0.16981131, a: 1}
     - _CloudColorNightUnder: {r: 0.036445368, g: 0.18190475, b: 0.5943396, a: 1}
@@ -96,8 +96,8 @@ Material:
     - _Color3: {r: 0.3679245, g: 0.33495015, b: 0.33495015, a: 1}
     - _Color3night: {r: 0.020247413, g: 0.043142565, b: 0.066037714, a: 1}
     - _ColorNight: {r: 0.1485849, g: 0.30771622, b: 0.5, a: 1}
-    - _DayBottomColor: {r: 0.32955217, g: 0, b: 1, a: 1}
-    - _DayTopColor: {r: 0.504717, g: 0.62504005, b: 1, a: 1}
+    - _DayBottomColor: {r: 0.73794055, g: 0.9716981, b: 0.95093954, a: 1}
+    - _DayTopColor: {r: 0.78431374, g: 0.9296345, b: 0.972549, a: 1}
     - _HorizonColorDay: {r: 0.8666667, g: 0.65562993, b: 0.16862744, a: 1}
     - _HorizonColorNight: {r: 0.12758097, g: 0.18826702, b: 0.4433962, a: 1}
     - _MoonColor: {r: 1, g: 0.96150243, b: 0.7971698, a: 1}
