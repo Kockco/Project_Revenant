@@ -584,6 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 2
+  charSize: 1
+  camHeight: 1.4
   startDistance: -5.3
   nowDistance: 0
 --- !u!143 &811136366

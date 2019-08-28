@@ -14,7 +14,7 @@ public class PlayerIdleState : PlayerState
     }
     void PlayerState.Update()
     {
-        Debug.Log("아이들");
+        //Debug.Log("아이들");
         // 실행할것 구현
         player.MoveCalc(1.0f);
         player.move.y -= player.gravity * Time.deltaTime;

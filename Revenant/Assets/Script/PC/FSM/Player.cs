@@ -52,17 +52,13 @@ public class Player : MonoBehaviour
         currentState = nextState;
         currentState.OnEnter(this);
     }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        Debug.Log("붙어있음");
-    }
+    
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.transform.position.y < transform.position.y)
         {
-            Debug.Log("충돌됨");
+            //Debug.Log("충돌됨");
             yVelocity = 0;
         }
     }

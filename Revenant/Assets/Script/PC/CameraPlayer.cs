@@ -16,7 +16,11 @@ public class CameraPlayer : MonoBehaviour
     Transform cameraParentTransform;
 
     bool topView;
-    [Header("카메라 높이 수정")]
+
+    [Header("캐릭터 크기 조정")]
+    [Range(0, 5)]
+    public float charSize =1 ;
+    [Header("카메라 높이 조정")]
     [Range(0, 5)]
     public float  camHeight = 1.4f;
     [Header("시작하는 카메라 거리")]
@@ -51,7 +55,11 @@ public class CameraPlayer : MonoBehaviour
             else
                 topView = false;
         }
+        //test 용
         nowDistance = Camera.main.transform.localPosition.z;
+        transform.localScale = new Vector3(charSize, charSize, charSize);
+
+
     }
 
     void LateUpdate()
