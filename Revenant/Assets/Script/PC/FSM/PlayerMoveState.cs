@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : IState
+public class PlayerMoveState : PlayerState
 {
     private Player player;
-    void IState.OnEnter(Player player)
+    void PlayerState.OnEnter(Player player)
     {
         //player 프로퍼티 초기화
         this.player = player;
         // 초기화 구현
     }
-    void IState.Update()
+    void PlayerState.Update()
     {
         // 실행할것 구현
         if (Input.GetKeyDown(KeyCode.W))
@@ -19,7 +19,7 @@ public class PlayerMoveState : IState
             player.SetState(new PlayerIdleState());
         }
     }
-    void IState.OnExit()
+    void PlayerState.OnExit()
     {
         //종료되면서 정리해야할것 구현
     }
