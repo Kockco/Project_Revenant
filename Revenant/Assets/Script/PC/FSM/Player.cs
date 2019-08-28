@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     public Vector3 move;
     public Transform myTransform;
-    public float runSpeed =5 ;
+    public float runSpeed = 5;
     public float gravity = 9.81f;
     public float yVelocity = 0;
     public float jumpPower = 10f;
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     {
         //state Update
         currentState.Update();
-        
+
         cc.Move(move * Time.deltaTime);
 
         MouseClick();
@@ -52,17 +52,13 @@ public class Player : MonoBehaviour
         currentState = nextState;
         currentState.OnEnter(this);
     }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        Debug.Log("붙어있음");
-    }
+    
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.transform.position.y < transform.position.y)
+        if (hit.transform.position.y < transform.position.y)
         {
-            Debug.Log("충돌됨");
+            //Debug.Log("충돌됨");
             yVelocity = 0;
         }
     }
@@ -139,19 +135,14 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (cc.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SetState(new PlayerAirborne());
-                yVelocity = jumpPower;
-            }
+            //SetState(new PlayerAirborne());
+            yVelocity = jumpPower;
         }
-        else
-        {
-            move.y = yVelocity;
-            if (yVelocity > -19)
-                yVelocity -= gravity * 3 * Time.deltaTime;
-        }
+        move.y = yVelocity;
+        if (yVelocity > -19)
+            yVelocity -= gravity * 3 * Time.deltaTime;
     }
+
 }
