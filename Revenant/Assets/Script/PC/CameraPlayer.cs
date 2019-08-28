@@ -16,7 +16,15 @@ public class CameraPlayer : MonoBehaviour
     Transform cameraParentTransform;
 
     bool topView;
-    
+    [Header("카메라 높이 수정")]
+    [Range(0, 5)]
+    public float  camHeight = 1.4f;
+    [Header("시작하는 카메라 거리")]
+    [Range(0,-30)]
+    public float startDistance = -4.1f;
+    [Header ("현재 거리(수정불가)")]
+    [SerializeField]
+    float nowDistance;
 
     // Use this for initialization
     void Awake()
@@ -27,6 +35,7 @@ public class CameraPlayer : MonoBehaviour
         cameraParentTransform = Camera.main.transform.parent;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, startDistance);
     }
 
     // Update is called once per frame
@@ -42,7 +51,7 @@ public class CameraPlayer : MonoBehaviour
             else
                 topView = false;
         }
-
+        nowDistance = Camera.main.transform.localPosition.z;
     }
 
     void LateUpdate()
@@ -57,7 +66,7 @@ public class CameraPlayer : MonoBehaviour
 
     void MouseSense()
     {
-        cameraParentTransform.position = myTransform.position + Vector3.up * 1.4f;  //캐릭터의 머리 높이쯤
+        cameraParentTransform.position = myTransform.position + Vector3.up * camHeight;  //캐릭터의 머리 높이쯤
 
         mouseMove += new Vector3(-Input.GetAxisRaw("Mouse Y") * mouseSensitivity, Input.GetAxisRaw("Mouse X") * mouseSensitivity, 0);   //마우스의 움직임을 가감
         if (mouseMove.x < -40)  //위로 볼수있는 것 제한 90이면 아예 땅바닥에서 하늘보기
@@ -90,10 +99,10 @@ public class CameraPlayer : MonoBehaviour
     void CameraDistanceCtrl()
     {
         Camera.main.transform.localPosition += new Vector3(0, 0, Input.GetAxisRaw("Mouse ScrollWheel") * 2.0f); //휠로 카메라의 거리를 조절한다.
-        if (-1 < Camera.main.transform.localPosition.z)
-            Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, -1);    //최대로 가까운 수치
-        else if (Camera.main.transform.localPosition.z < -5)
-            Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, -5);    //최대로 먼 수치
+        if (0 < Camera.main.transform.localPosition.z) //  -1 이 가장 나음?
+            Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, 0);    //최대로 가까운 수치
+        else if (Camera.main.transform.localPosition.z < -30) // - 5까지였음
+            Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, -30);    //최대로 먼 수치
     }
     
 }
