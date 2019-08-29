@@ -8,7 +8,7 @@ public class PlayerAirborne : PlayerState
     void PlayerState.OnEnter(Player player) { }
 
     void PlayerState.Update() {
-        //Debug.Log("에어본");
+       
     }
 
         void PlayerState.OnExit() { }
