@@ -6,6 +6,7 @@ public class PlayerAimState : MonoBehaviour
 {
     public GameObject col;
     public bool isCol;
+
     private void Start()
     {
         col = null;

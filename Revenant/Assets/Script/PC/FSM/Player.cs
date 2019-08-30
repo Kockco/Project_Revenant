@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public Transform model;
     public Transform cameraTransform;
-    public Transform staff;
+    public GameObject staff;
     public Transform aim;
 
     CharacterController cc;
@@ -23,6 +23,10 @@ public class Player : MonoBehaviour
     {
         //Start idleState
         SetState(new PlayerIdleState());
+
+        staff = GameObject.Find("Staff");
+        if (staff == null)
+            Debug.Log("PlayerScript Error : staff not find");
 
         cc = GetComponent<CharacterController>();
         model = transform.GetChild(0);
@@ -36,8 +40,6 @@ public class Player : MonoBehaviour
         currentState.Update();
 
         cc.Move(move * Time.deltaTime);
-
-        MouseClick();
     }
 
     public void SetState(PlayerState nextState)
@@ -101,37 +103,6 @@ public class Player : MonoBehaviour
 
         move.y = tempMoveY; //y값 복구
     }
-    void MouseClick()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            model.GetComponent<Animator>().SetTrigger("UseStaff");
-            if (aim.GetComponent<PlayerAimState>().isCol == true)
-            {
-                if (aim.GetComponent<PlayerAimState>().col.name == "Empty_Crystal") // 에임과 충돌한것->내스테프와 같은것
-                {
-                    //크리스탈이 달라야만 바꿔준다.
-                    if (aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().state !=
-                        staff.GetComponent<PlayerStaff>().state)
-                    {
-                        aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().state = staff.GetComponent<PlayerStaff>().state;
-                        aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().changeMat = true;
-                    }
-                }
-                else if (aim.GetComponent<PlayerAimState>().col.tag == "Crystal")
-                {
-                    staff.GetComponent<PlayerStaff>().mat = aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().myMat.material;
-                    staff.GetComponent<PlayerStaff>().state = aim.GetComponent<PlayerAimState>().col.GetComponent<CrystalState>().state;
-                }
-            }
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            model.GetComponent<Animator>().SetTrigger("UseStaff");
-            staff.GetComponent<PlayerStaff>().mat = staff.GetComponent<PlayerStaff>().normalMat;
-            staff.GetComponent<PlayerStaff>().state = C_STATE.EMPTY;
-        }
-    }
 
     public void Jump()
     {
@@ -144,5 +115,15 @@ public class Player : MonoBehaviour
         if (yVelocity > -19)
             yVelocity -= gravity * 3 * Time.deltaTime;
     }
+    
+    public void PlayerAnimation(string aniName) { model.GetComponent<Animator>().SetTrigger(aniName); }
 
+    //스태프의 getset
+    public C_STATE GetStaffState() { return staff.GetComponent<PlayerStaff>().GetState();}
+    public float GetStaffCryNumber() { return staff.GetComponent<PlayerStaff>().GetCrystalNum(); }
+    public void ChangeStaffNum(float num) { staff.GetComponent<PlayerStaff>().ChangeNum(num); }
+    public void ChangeStaffMaterial() { staff.GetComponent<PlayerStaff>().ChangeMaterial(); }
+    public void ChangeStaffMaterial(Material mat) { staff.GetComponent<PlayerStaff>().ChangeMaterial(mat); }
+    public void ChangeStaffState(C_STATE state) { staff.GetComponent<PlayerStaff>().ChangeState(state); }
+    
 }

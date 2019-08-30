@@ -6,6 +6,7 @@ public enum C_STATE { BLUE, WHITE, RED, BLACK, EMPTY }
 
 public class CrystalState : MonoBehaviour
 {
+    public float myNum;
     public C_STATE state;
     public Material[] mat;
     public MeshRenderer myMat;
@@ -24,6 +25,11 @@ public class CrystalState : MonoBehaviour
         myMat = GetComponent<MeshRenderer>();
         changeMat = false;
         timeCheck = 0;
+
+        if(myNum <= 0)
+        {
+            Debug.Log(transform.name + " number none");
+        }
     }
 
     // Update is called once per frame
@@ -34,7 +40,7 @@ public class CrystalState : MonoBehaviour
         if(changeMat == true)
         {
             timeCheck += Time.deltaTime;
-            if(timeCheck >=0.5f)
+            if(timeCheck >=0.1f)
             {
                 timeCheck = 0;
                 changeMat = false;

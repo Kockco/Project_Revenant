@@ -4,18 +4,38 @@ using UnityEngine;
 
 public class PlayerStaff : MonoBehaviour
 {
-    public Material mat;
+    float crystalNum;
+    Material mat;
     public Material normalMat;
-    public C_STATE state;
+    C_STATE state;
 
     private void Start()
     {
         mat = normalMat;
         state = C_STATE.EMPTY;
+        crystalNum = 0;
     }
     
     void Update()
     {
+    }
+
+    public void ChangeMaterial()
+    {
+        GetComponent<MeshRenderer>().material = normalMat;
+    }
+    public void ChangeMaterial(Material changeMat)
+    {
+        mat = changeMat;
         GetComponent<MeshRenderer>().material = mat;
     }
+    public void ChangeState(C_STATE changeState)
+    {
+        state = changeState;
+    }
+    public void ChangeNum(float changeNum) { crystalNum = changeNum; }
+    public float GetCrystalNum() { return crystalNum; }
+    public C_STATE GetState() { return state; }
+    public Material GetMaterial() { return mat; }
+    
 }
