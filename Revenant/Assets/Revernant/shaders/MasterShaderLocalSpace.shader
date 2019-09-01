@@ -4,7 +4,6 @@ Shader "Colr/Master Shader Local Space" {
 
 	Properties {
 		_MainTex("Texture", 2D) = "white" {}
-		
 		_TopColor ("Top Color", Color) = (0, 1, 0, 0)
 		_BottomColor ("Bottom Color", Color) = (0, 0.5, 0.5, 0)
 
@@ -64,6 +63,7 @@ Shader "Colr/Master Shader Local Space" {
 
 			#include "UnityCG.cginc"
             #include "AutoLight.cginc"
+
 
 			static const half3 VEC3_ONE = half3(1, 1, 1);
 
@@ -193,6 +193,9 @@ Shader "Colr/Master Shader Local Space" {
 			}
 
 			fixed4 frag(v2f v) : COLOR {
+
+
+
 				fixed4 result = fixed4(0, 0, 0, 0);
 
 				half4 lightColor = half4((_LightTint * v.lighting), 1);

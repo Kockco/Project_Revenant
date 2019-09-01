@@ -2,15 +2,15 @@
 Shader "Toon/Ice Effect" {
 
 	Properties{
-		_Color("Main Color", Color) = (0.49,0.94,0.64,1)// top gradient, light green
-		_TColor("Top Color", Color) = (0.49,0.94,0.64,1)// top gradient, light green
-		_BottomColor("Bottom Color", Color) = (0.23,0,0.95,1)// bottom gradient, blue
+		_Color("Main Color", Color) = (0.49,0.94,0.64,1)
+		_TColor("Top Color", Color) = (0.49,0.94,0.64,1)
+		_BottomColor("Bottom Color", Color) = (0.23,0,0.95,1)
 		_Ramp("Toon Ramp (RGB)", 2D) = "gray" {}
 		_BumpMap("Normal", 2D) = "bump" {}
 	
-		_RimBrightness("Rim Brightness", Range(3,4)) = 3.2 // ice rim brightness
+		_RimBrightness("Rim Brightness", Range(3,4)) = 3.2 
 		[Toggle(ALPHA)] _ALPHA("Enable Alpha?", Float) = 0
-		_Offset("Gradient Offset", Range(-4,4)) = 3.2 // ice rim brightness
+		_Offset("Gradient Offset", Range(-4,4)) = 3.2
 	}
 
 		SubShader{
@@ -29,21 +29,19 @@ Shader "Toon/Ice Effect" {
 			sampler2D _Ramp;
 			sampler2D _BumpMap;
 
-	// custom lighting function that uses a texture ramp based
-	// on angle between light direction and normal
-
+	
 
 
 	float _Offset;
 	float4 _Color;
 	float4 _TColor;
-	float4 _BottomColor;// bottom gradient color
-	float _RimBrightness;// ice rim brightness
+	float4 _BottomColor;
+	float _RimBrightness;
 	
 
 	struct Input {
-		float3 viewDir; // view direction
-		float3 worldPos; // world position
+		float3 viewDir; 
+		float3 worldPos;
 		float2 uv_BumpMap;
 		
 	};
