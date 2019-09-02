@@ -26,5 +26,5 @@ Material:
     - _Intensity: 1.2
     m_Colors:
     - _Color1: {r: 0, g: 0.7, b: 0.74, a: 0}
-    - _Color2: {r: 0.8349666, g: 0.5740922, b: 0.9150943, a: 0}
+    - _Color2: {r: 0.682751, g: 0.57254905, b: 0.9137255, a: 0}
     - _Direction: {r: 0, g: 1, b: 0, a: 0}

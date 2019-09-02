@@ -9,28 +9,28 @@ Shader "Hidden/ColorCorrectionCurvesSimple" {
 	// Shader code pasted into all further CGPROGRAM blocks
 	CGINCLUDE
 
+	#pragma fragmentoption ARB_precision_hint_fastest
+	
 	#include "UnityCG.cginc"
 	
 	struct v2f {
-		float4 pos : SV_POSITION;
+		float4 pos : POSITION;
 		half2 uv : TEXCOORD0;
 	};
 	
 	sampler2D _MainTex;
 	sampler2D _RgbTex;
 	fixed _Saturation;
-
-	half4 _MainTex_ST;
 	
 	v2f vert( appdata_img v ) 
 	{
 		v2f o;
 		o.pos = UnityObjectToClipPos(v.vertex);
-		o.uv = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
+		o.uv = v.texcoord.xy;
 		return o;
 	} 
 	
-	fixed4 frag(v2f i) : SV_Target 
+	fixed4 frag(v2f i) : COLOR 
 	{
 		fixed4 color = tex2D(_MainTex, i.uv); 
 		
@@ -50,6 +50,7 @@ Shader "Hidden/ColorCorrectionCurvesSimple" {
 Subshader {
  Pass {
 	  ZTest Always Cull Off ZWrite Off
+	  Fog { Mode off }      
 
       CGPROGRAM
       #pragma vertex vert
