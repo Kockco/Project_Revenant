@@ -14,7 +14,7 @@ public class PlayerAimState : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Crystal")
+        if(other.gameObject.tag == "Crystal" || other.gameObject.tag == "Empty_Crystal" )
         {
             col = other.gameObject;
             isCol = true;
@@ -22,7 +22,7 @@ public class PlayerAimState : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Crystal")
+        if (other.gameObject.tag == "Crystal" || other.gameObject.tag == "Empty_Crystal")
         {
             col = null;
             isCol = false;

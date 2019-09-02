@@ -19,10 +19,11 @@ public class CrystalRotation : MonoBehaviour
     public int minLimit;
     [Range(0, 179)]
     public int maxLimit;
-    [Range(0, 30)]
+    [Range(10, 30)]
     public int stopPointDistance;
 
     public int myPoint;
+    int zeroPoint;
     int stopPointCount = 0;
     public int[] stopPoint;
     public float movingTime;
@@ -51,9 +52,9 @@ public class CrystalRotation : MonoBehaviour
                 if(stopPoint[i] == 0)
                 {
                     myPoint = i;
+                    zeroPoint = i;
                 }
             }
-            
         }
         else
         {
@@ -85,17 +86,17 @@ public class CrystalRotation : MonoBehaviour
         switch (c_state.state)
         {
             case C_STATE.EMPTY:
-                if(RotY > -1)
+                if(RotY < -1)
                 {
                     parent.transform.Rotate(Vector3.up * Time.deltaTime * 10);
                 }
-                else if(RotY < 1)
+                else if(RotY > 1)
                 {
                     parent.transform.Rotate(Vector3.down * Time.deltaTime * 10);
                 }
                 else
                 {
-                    myPoint = 3;
+                    myPoint = zeroPoint;
                 }
                 break;
             case C_STATE.BLUE:

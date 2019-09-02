@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStaff : MonoBehaviour
 {
-    float crystalNum;
+    int crystalNum;
     Material mat;
     public Material normalMat;
     C_STATE state;
@@ -33,8 +33,9 @@ public class PlayerStaff : MonoBehaviour
     {
         state = changeState;
     }
-    public void ChangeNum(float changeNum) { crystalNum = changeNum; }
-    public float GetCrystalNum() { return crystalNum; }
+
+    public void ChangeNum(int changeNum) { crystalNum = changeNum; }
+    public int GetCrystalNum() { return crystalNum; }
     public C_STATE GetState() { return state; }
     public Material GetMaterial() { return mat; }
     

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Crystal
+  - Empty_Crystal
   layers:
   - Default
   - TransparentFX
